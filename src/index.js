@@ -3,6 +3,7 @@ const exp = require("express");
 const passport = require("passport");
 const { connect } = require("mongoose");
 const { success, error } = require("consola");
+const fileUpload = require('express-fileupload');
 
 const { DB, REQUEST_TIMEOUT } = require("./config");
 const PORT = 5000;
@@ -24,6 +25,9 @@ app.get("/", (req, res) => {
   res.send("Server running");
 });
 // User Router Middleware
+app.use(fileUpload({
+  useTempFiles:true
+}))
 app.use("/api", require("./routes"));
 
 const startApp = async () => {

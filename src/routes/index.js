@@ -12,11 +12,7 @@ router.use("/auth", require("./auth"));
 // Admin Protected Route
 router.use("/admin", userAuth, checkRole([ROLE.admin]), require("./admin"));
 
-
-
 // Users Protected Route
-router.get("/profile", userAuth, checkRole([ROLE.user]), async (req, res) => {
-  res.status(200).json({ type: ROLE.user, user: serializeUser(req.user) });
-});
+router.use("/user", userAuth, checkRole([ROLE.user]), require("./user"));
 
 module.exports = router;

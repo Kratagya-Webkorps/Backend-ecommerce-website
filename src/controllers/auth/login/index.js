@@ -78,7 +78,7 @@ const login = async (userRequest, role, res) => {
         username: user.username,
         role: user.role,
         email: user.email,
-        token: `Bearer ${token}`,
+        token: token,
         expiresIn: TOKEN_EXPIRATION,
       };
 

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { ROLE } = require("../../config/roles");
+const { getAllProducts } = require("../../controllers/products");
 const {
   userAuth,
   userLogin,
@@ -27,7 +28,9 @@ router.get("/getAllUsers", async (req, res) => {
     return res.send({ status: "ok", data: allUsers });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({ status: "error", message: "Internal server error" });
+    return res
+      .status(500)
+      .send({ status: "error", message: "Internal server error" });
   }
 });
 
@@ -50,5 +53,7 @@ router.post("/login", async (req, res) => {
 router.post("/login-admin", async (req, res) => {
   await userLogin(req.body, ROLE.admin, res);
 });
+
+router.get("/get-all-products", getAllProducts);
 
 module.exports = router;

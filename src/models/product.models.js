@@ -1,31 +1,43 @@
-import mongoose from "mongoose";
+const { Schema, model } = require("mongoose");
 
-const productSchema = new mongoose.Schema(
+
+const productSchema = new Schema(
   {
-    description: {
-      type: String,
-      required: true,
-    },
     name: {
       type: String,
       required: true,
     },
-    productImage: {
-      type: String,
+
+    rating: {
+      type: Number,
+      default: 3,
     },
+
     price: {
       type: Number,
       default: 0,
     },
+
     stock: {
-      default: 0,
       type: Number,
+      default: 1,
     },
-    category: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "Category" },
+
+    description: {
+      type: String,
+      required: true,
+    },
+
+    productImage: {
+      type: String,
+    },
+
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+    },
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   },
@@ -33,4 +45,4 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const Product = mongoose.model("Product", productSchema);
+module.exports = model("Product", productSchema);
