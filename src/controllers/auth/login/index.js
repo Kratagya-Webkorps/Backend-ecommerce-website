@@ -95,7 +95,6 @@ const login = async (userRequest, role, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
     let errorMsg = MSG.loginError;
     if (err.isJoi === true) {
       err.status = 403;

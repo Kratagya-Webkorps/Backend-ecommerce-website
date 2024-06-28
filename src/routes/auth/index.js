@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { ROLE } = require("../../config/roles");
-const { getAllProducts } = require("../../controllers/products");
+const { getRangeOfProducts } = require("../../controllers/products");
 const {
   userAuth,
   userLogin,
@@ -8,6 +8,7 @@ const {
   userRegister,
   serializeUser,
 } = require("../../controllers/auth");
+
 const Users = require("../../models/user.models");
 
 router.get("/", async (req, res) => {
@@ -54,6 +55,7 @@ router.post("/login-admin", async (req, res) => {
   await userLogin(req.body, ROLE.admin, res);
 });
 
-router.get("/get-all-products", getAllProducts);
+router.get('/products/range', getRangeOfProducts);
+
 
 module.exports = router;
