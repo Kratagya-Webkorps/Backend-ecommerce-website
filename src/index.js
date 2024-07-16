@@ -6,7 +6,7 @@ const { success, error } = require("consola");
 const fileUpload = require('express-fileupload');
 
 const { DB, REQUEST_TIMEOUT } = require("./config");
-const PORT = process.env.PORT | 5000;
+const PORT = process.env.PORT || 5000;
 
 const app = exp();
 
