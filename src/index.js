@@ -11,6 +11,13 @@ const PORT = 5000;
 const app = exp();
 
 app.use(cors());
+app.use(
+  cors({
+    origin: ["https://deploy-mern-1whq.verscel.app"],
+    credentials: true,
+  })
+);
+
 app.use(exp.json());
 app.use(
   exp.urlencoded({
